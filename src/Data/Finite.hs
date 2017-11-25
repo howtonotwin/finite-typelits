@@ -137,7 +137,7 @@ unshiftProxy p (Finite x) = if x < natVal p
     else Just $ Finite $ x - natVal p
 
 -- | Add two 'Finite's.
-add :: Finite n -> Finite m -> Finite (n + m)
+add :: Finite n -> Finite m -> Finite (n + m - 1)
 add (Finite x) (Finite y) = Finite $ x + y
 
 -- | Subtract two 'Finite's. Returns 'Left' for negative results, and 'Right' for positive results. Note that this function never returns @'Left' 0@.
@@ -147,7 +147,7 @@ sub (Finite x) (Finite y) = if x >= y
     else Left $ Finite $ y - x
 
 -- | Multiply two 'Finite's.
-multiply :: Finite n -> Finite m -> Finite (n * m)
+multiply :: Finite n -> Finite m -> Finite ((n - 1) * (m - 1) + 1)
 multiply (Finite x) (Finite y) = Finite $ x * y
 
 getLeftType :: Either a b -> a
