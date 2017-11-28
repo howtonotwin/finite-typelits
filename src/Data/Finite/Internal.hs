@@ -80,7 +80,7 @@ instance KnownNat n => Num (Finite n) where
     fx@(Finite x) - Finite y = Finite $ (x - y) `mod` natVal fx
     fx@(Finite x) * Finite y = Finite $ (x * y) `mod` natVal fx
     abs fx = fx
-    signum _ = fromInteger 1
+    signum (Finite x) = Finite $ signum x
     fromInteger x = result
         where
             result = if x < natVal result && x >= 0
